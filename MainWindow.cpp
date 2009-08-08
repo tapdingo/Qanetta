@@ -4,6 +4,10 @@
 
 MainWindow::MainWindow()
 {
+
+	m_drawing = new DrawingArea(this);
+	setCentralWidget(m_drawing);
+
 	createStatusBar();
 	this->resize(800, 600);
 

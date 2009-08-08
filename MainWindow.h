@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "DrawingArea.h"
+
 class QSlider;
 class QSpinBox;
 
@@ -36,6 +38,7 @@ class MainWindow : public QMainWindow
 		QStatusBar* m_statusBar;  //!< The main status bar
 		QSlider* m_slider;  //!< The slider Box for choosing a timestamp
 		QSpinBox* m_spinBox;  //!< Spin Box for choosing a timestamp
+		DrawingArea* m_drawing;  //!< Center Drawing Area
 
 		QAction* parseAction;
 		QAction* exportAction;
