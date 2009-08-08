@@ -2,3 +2,5 @@ Makefile
 Qanetta
 *.swp
 *.swo
+*.o
+moc_*

@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+class QSlider;
+class QSpinBox;
+
 /*!
  * \brief The Main Window Form Class
  *
@@ -18,15 +21,30 @@ class MainWindow : public QMainWindow
 		 */
 		MainWindow();
 
-
 	private:
 
 		/*!
-		 * \brief Crate the status bar
+		 * \brief Create the status bar
 		 */
 		void createStatusBar();
-		QStatusBar* m_statusBar;  //!< The main status bar
 
+		/*!
+		 * \brief Creates the top tool bar
+		 */
+		void createToolBar();
+
+		QStatusBar* m_statusBar;  //!< The main status bar
+		QSlider* m_slider;  //!< The slider Box for choosing a timestamp
+		QSpinBox* m_spinBox;  //!< Spin Box for choosing a timestamp
+
+		QAction* parseAction;
+		QAction* exportAction;
+		QToolBar* topToolBar;
+
+		private slots:
+			void timeChanged(int time);
+			void exportScene();
+			void parseFile();
 };
 
 #endif
