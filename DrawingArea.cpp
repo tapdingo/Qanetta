@@ -18,8 +18,9 @@ void DrawingArea::paintEvent(QPaintEvent* event)
 	gradient->setColorAt(0, Qt::darkGray);
 	gradient->setColorAt(1, Qt::black);
 	QBrush* brush = new QBrush(*gradient);
-	painter.drawText(rect(), Qt::AlignCenter, "CHECK");
 
 	painter.setBrush(*gradient);
 	painter.drawRect(0, 0, 800, 600);
+
+	painter.drawText(rect(), Qt::AlignCenter, "Qanetta");
 }
