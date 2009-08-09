@@ -60,7 +60,14 @@ void MainWindow::exportScene()
 
 void MainWindow::parseFile()
 {
-	QMessageBox msgBox;
-	msgBox.setText("Parsing is not yet implemented");
-	msgBox.exec();
+	QString fileName = QFileDialog::getOpenFileName(
+			this,
+			tr("Open File to parse..."), ".",
+			tr("Vanetta Trace Files (*.tr)"));
+
+	if (!fileName.isEmpty())
+	{
+		VanettaParser::getInstance()->setParseFile(fileName.toAscii().data());
+		return;
+	}
 }

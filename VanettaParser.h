@@ -5,10 +5,14 @@ class VanettaParser
 {
 	public:
 		static VanettaParser* getInstance();
+		void setParseFile(char * fileName);
 
 	protected:
-		static VanettaParser* m_instance;
+		void parseFile();
 		VanettaParser(){};
+
+		static VanettaParser* m_instance;
+		char* m_File;
 };
 
 #endif
