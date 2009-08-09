@@ -10,6 +10,12 @@ class DrawingArea : public QWidget
 	public:
 	DrawingArea(QWidget* parent = 0);
 	void paintEvent(QPaintEvent* event);
+	void draw();
+	void setTime(const double& time);
+
+	private:
+
+	double m_time;
 };
 
 #endif

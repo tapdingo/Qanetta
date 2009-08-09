@@ -23,7 +23,6 @@ MainWindow::MainWindow()
 	connect(exportAction, SIGNAL(triggered()), this, SLOT(exportScene()));
 
 	connect(m_spinBox, SIGNAL(valueChanged(int)), this, SLOT(timeChanged(int)));
-	connect(m_slider, SIGNAL(valueChanged(int)), this, SLOT(timeChanged(int)));
 }
 
 void MainWindow::createStatusBar()
@@ -47,6 +46,8 @@ void MainWindow::timeChanged(int time)
 {
 	m_spinBox->setValue(time);
 	m_slider->setValue(time);
+	m_drawing->setTime(time);
+	m_drawing->update();
 }
 
 void MainWindow::exportScene()
