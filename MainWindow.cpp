@@ -84,4 +84,6 @@ void MainWindow::parseFile()
 	msg.setText("Parsing Finished");
 	msg.setInformativeText(parsed);
 	msg.exec();
+	m_drawing->setScene(dataBuf);
+	m_drawing->update();
 }

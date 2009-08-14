@@ -26,9 +26,23 @@ void DrawingArea::paintEvent(QPaintEvent* event)
 	painter.setPen(QPen(Qt::black, 12, Qt::SolidLine, Qt::RoundCap));
 	painter.setFont(QFont("Arial", 20));
 	painter.drawText(20, 30, string);
+
+	if (m_scene.size() > 0)
+	{
+		drawScene(&painter);
+	}
 }
 
 void DrawingArea::setTime(const double& time)
 {
 	m_time = time;
+}
+
+void DrawingArea::setScene(const TimeState& scene)
+{
+	m_scene = scene;
+}
+
+void DrawingArea::drawScene(QPainter* painter)
+{
 }
