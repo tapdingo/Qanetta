@@ -70,4 +70,5 @@ void MainWindow::parseFile()
 		VanettaParser::getInstance()->setParseFile(fileName.toAscii().data());
 		return;
 	}
+	VanettaParser::getInstance()->parseFile(dataBuf);
 }

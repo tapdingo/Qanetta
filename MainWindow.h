@@ -40,6 +40,7 @@ class MainWindow : public QMainWindow
 		QSlider* m_slider;  //!< The slider Box for choosing a timestamp
 		QSpinBox* m_spinBox;  //!< Spin Box for choosing a timestamp
 		DrawingArea* m_drawing;  //!< Center Drawing Area
+		TimeState dataBuf;  //!< Buffer for the parsed file
 
 		QAction* parseAction;
 		QAction* exportAction;
