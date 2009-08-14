@@ -65,10 +65,23 @@ void MainWindow::parseFile()
 			tr("Open File to parse..."), ".",
 			tr("Vanetta Trace Files (*.tr)"));
 
-	if (!fileName.isEmpty())
+	if (fileName.isEmpty())
 	{
-		VanettaParser::getInstance()->setParseFile(fileName.toAscii().data());
 		return;
 	}
+	VanettaParser::getInstance()->setParseFile(fileName.toAscii().data());
 	VanettaParser::getInstance()->parseFile(dataBuf);
+
+	QString parsed;
+	QString lines = " Timesteps found";
+
+	m_slider->setMaximum(dataBuf.size());
+	m_spinBox->setMaximum(dataBuf.size());
+
+	parsed.setNum(dataBuf.size());
+	parsed.append(lines);
+	QMessageBox msg;
+	msg.setText("Parsing Finished");
+	msg.setInformativeText(parsed);
+	msg.exec();
 }

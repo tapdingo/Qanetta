@@ -4,15 +4,17 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <set>
 
-typedef std::vector<int> link_tuple;
+typedef std::set<int> neighbor_tuple;
+typedef std::map<int, int> link_tuple;
 typedef std::vector<std::string> SplitVector;
 
 struct NodeData
 {
 	double x_coord;
 	double y_coord;
-	link_tuple neighbors;
+	neighbor_tuple neighbors;
 	link_tuple topology;
 };
 

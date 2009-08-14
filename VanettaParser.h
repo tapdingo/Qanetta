@@ -12,6 +12,8 @@ class VanettaParser
 
 	protected:
 		VanettaParser(){};
+		void extractNeighbors(neighbor_tuple& tgt, std::string& data);
+		void extractTopology(link_tuple& tgt, std::string& data);
 
 		static VanettaParser* m_instance;
 		char* m_File;
