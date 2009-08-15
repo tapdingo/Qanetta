@@ -21,5 +21,6 @@ struct NodeData
 //Usage Here: First Field is the Time Stamp, Second Field the Node ID
 //The rest is the Node Data to the given time
 typedef std::map< double, std::map< int, NodeData> > TimeState;
+typedef std::map<int, NodeData> Nodes;
 
 #endif

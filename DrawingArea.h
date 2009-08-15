@@ -5,6 +5,9 @@
 
 #include "DataTypes.h"
 
+#define WIDTH  998
+#define HEIGHT 725
+
 class DrawingArea : public QWidget
 {
 	Q_OBJECT
@@ -19,8 +22,15 @@ class DrawingArea : public QWidget
 	private:
 
 	void drawScene(QPainter* painter);
+	void calculateParameters();
+	void drawLinks(Nodes& nodes);
 	double m_time;
 	TimeState m_scene;
+
+	double m_xScaling;
+	double m_yScaling;
+	int m_xOffset;
+	int m_yOffset;
 };
 
 #endif

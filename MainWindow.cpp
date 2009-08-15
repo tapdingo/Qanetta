@@ -9,7 +9,7 @@ MainWindow::MainWindow()
 	setCentralWidget(m_drawing);
 
 	createStatusBar();
-	this->resize(800, 600);
+	this->resize(1000, 800);
 
 	parseAction = new QAction(tr("&Parse File"), this);
 	parseAction->setStatusTip(tr("Open a trace file for parsing"));
@@ -60,6 +60,7 @@ void MainWindow::exportScene()
 
 void MainWindow::parseFile()
 {
+	dataBuf.clear();
 	QString fileName = QFileDialog::getOpenFileName(
 			this,
 			tr("Open File to parse..."), ".",
