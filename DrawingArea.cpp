@@ -73,7 +73,7 @@ void DrawingArea::drawScene(QPainter* painter)
 		painter->drawEllipse(nodeX, nodeY, 20, 20);
 		painter->drawText(nodeX + 25, nodeY + 15, node);
 
-		drawLinks(*it);
+		drawLinks(painter, it->second.neighbors, nodeX, nodeY);
 	}
 }
 
@@ -141,6 +141,21 @@ void DrawingArea::calculateParameters()
 	m_yOffset = yMin;
 }
 
-void DrawingArea::drawLinks(Nodes& nodes)
+void DrawingArea::drawLinks(
+		QPainter* painter,
+		neighbor_tuple& nbrs,
+		int srcX,
+		int srcY)
 {
+	neighbor_tuple::iterator neighbors;
+	for (neighbors = nbrs.begin(); neighbors != nbrs.end(); neighbors++)
+	{
+		NodeData tgtData = m_scene[m_time][*neighbors];
+
+		int tgtX = (tgtData.x_coord - m_xOffset) * m_xScaling;
+		int tgtY = (tgtData.y_coord - m_yOffset) * m_yScaling;
+
+		painter->setPen(QPen(Qt::black, 2, Qt::DotLine, Qt::RoundCap));
+		painter->drawLine(srcX + 10, srcY + 10, tgtX + 10, tgtY + 10);
+	}
 }

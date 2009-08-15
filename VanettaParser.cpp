@@ -93,6 +93,11 @@ void VanettaParser::extractNeighbors(neighbor_tuple& tgt, std::string& data)
 	SplitVector neighbors;
 	boost::split(neighbors, data, boost::is_any_of(","));
 
+	if (data.size() < 1)
+	{
+		return;
+	}
+
 	SplitVector::iterator it;
 	for (it = neighbors.begin(); it != neighbors.end(); it ++)
 	{

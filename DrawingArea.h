@@ -23,7 +23,11 @@ class DrawingArea : public QWidget
 
 	void drawScene(QPainter* painter);
 	void calculateParameters();
-	void drawLinks(Nodes& nodes);
+	void drawLinks(
+			QPainter* painter,
+			neighbor_tuple& nbrs,
+			int srcX,
+			int srcY);
 	double m_time;
 	TimeState m_scene;
 
