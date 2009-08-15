@@ -23,4 +23,20 @@ struct NodeData
 typedef std::map< double, std::map< int, NodeData> > TimeState;
 typedef std::map<int, NodeData> Nodes;
 
+struct NodeCoords
+{
+	int x_coord;
+	int y_coord;
+};
+
+struct NeighborTuple
+{
+	int src;
+	int tgt;
+};
+
+typedef std::map<int, NodeCoords> NodeList;
+typedef std::map<int, link_tuple> RoutingList;
+typedef std::vector<NeighborTuple> LinkList;
+
 #endif

@@ -21,13 +21,14 @@ class DrawingArea : public QWidget
 
 	private:
 
-	void drawScene(QPainter* painter);
+	void drawScene();
+	void drawNodes();
+
 	void calculateParameters();
-	void drawLinks(neighbor_tuple& nbrs, int srcX, int srcY);
-	void drawRtable(link_tuple& links,
-			neighbor_tuple& nbrs,
-			int srcX,
-			int srcY);
+	void addLinks(neighbor_tuple& nbrs, int id);
+	void addRoutes(link_tuple& topo, neighbor_tuple& neigh, int id);
+	void drawLinks();
+	void drawRtable();
 	double m_time;
 	TimeState m_scene;
 
@@ -36,6 +37,9 @@ class DrawingArea : public QWidget
 	int m_xOffset;
 	int m_yOffset;
 	QPainter* m_painter;
+	LinkList m_linkList;
+	NodeList m_nodeList;
+	RoutingList m_rList;
 };
 
 #endif
