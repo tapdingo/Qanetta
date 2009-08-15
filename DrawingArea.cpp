@@ -75,7 +75,7 @@ void DrawingArea::drawScene(QPainter* painter)
 		painter->drawText(nodeX + 25, nodeY + 15, node);
 
 		drawLinks(it->second.neighbors, nodeX, nodeY);
-		drawRtable(it->second.topology, nodeX, nodeY);
+		drawRtable(it->second.topology, it->second.neighbors, nodeX, nodeY);
 	}
 }
 
@@ -158,6 +158,51 @@ void DrawingArea::drawLinks(neighbor_tuple& nbrs, int srcX,	int srcY)
 	}
 }
 
-void DrawingArea::drawRtable( link_tuple& links, int srcX, int srcY)
+void DrawingArea::drawRtable(
+		link_tuple& links,
+		neighbor_tuple& nbrs,
+		int srcX,
+		int srcY)
 {
+	int rTableX = srcX + 20;
+	int rTableY = srcY + 20;
+	link_tuple rTable = links;
+
+	neighbor_tuple::iterator it;
+	for (it = nbrs.begin(); it != nbrs.end(); it++)
+	{
+		rTable[*it] = *it;
+	}
+
+	QString rTableString ("Target NextHop");
+
+	if (rTable.size() > 0)
+	{
+		//20 * size for the links , 20 for the Caption
+		int rTableSize = 18 * rTable.size() + 20;
+		m_painter->setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap));
+		m_painter->drawRoundRect(rTableX, rTableY, 130, rTableSize);
+
+		int textX = rTableX + 12;
+		int textY = rTableY + 15;
+		m_painter->drawText(textX, textY, rTableString);
+		textY += 20;
+
+		link_tuple::iterator nit;
+		for (nit = rTable.begin(); nit != rTable.end(); nit++)
+		{
+			QString tgt;
+			tgt.setNum(nit->first);
+			QString nHop;
+			nHop.setNum(nit->second);
+			QString tableLine;
+			tableLine.append("  ");
+			tableLine.append(tgt);
+			tableLine.append("           ");
+			tableLine.append(nHop);
+			m_painter->drawText(textX, textY, tableLine);
+			textY += 16;
+		}
+
+	}
 }
