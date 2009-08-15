@@ -20,6 +20,7 @@ DrawingArea::DrawingArea(QWidget* parent)
 void DrawingArea::paintEvent(QPaintEvent* event)
 {
 	QPainter painter(this);
+	m_painter = &painter;
 	painter.setViewport(0, 0, WIDTH, HEIGHT);
 	QLinearGradient* gradient = new QLinearGradient(0, 0, WIDTH, HEIGHT);
 	gradient->setColorAt(0, Qt::darkGray);
@@ -73,7 +74,8 @@ void DrawingArea::drawScene(QPainter* painter)
 		painter->drawEllipse(nodeX, nodeY, 20, 20);
 		painter->drawText(nodeX + 25, nodeY + 15, node);
 
-		drawLinks(painter, it->second.neighbors, nodeX, nodeY);
+		drawLinks(it->second.neighbors, nodeX, nodeY);
+		drawRtable(it->second.topology, nodeX, nodeY);
 	}
 }
 
@@ -141,11 +143,7 @@ void DrawingArea::calculateParameters()
 	m_yOffset = yMin;
 }
 
-void DrawingArea::drawLinks(
-		QPainter* painter,
-		neighbor_tuple& nbrs,
-		int srcX,
-		int srcY)
+void DrawingArea::drawLinks(neighbor_tuple& nbrs, int srcX,	int srcY)
 {
 	neighbor_tuple::iterator neighbors;
 	for (neighbors = nbrs.begin(); neighbors != nbrs.end(); neighbors++)
@@ -155,7 +153,11 @@ void DrawingArea::drawLinks(
 		int tgtX = (tgtData.x_coord - m_xOffset) * m_xScaling;
 		int tgtY = (tgtData.y_coord - m_yOffset) * m_yScaling;
 
-		painter->setPen(QPen(Qt::black, 2, Qt::DotLine, Qt::RoundCap));
-		painter->drawLine(srcX + 10, srcY + 10, tgtX + 10, tgtY + 10);
+		m_painter->setPen(QPen(Qt::black, 2, Qt::DotLine, Qt::RoundCap));
+		m_painter->drawLine(srcX + 10, srcY + 10, tgtX + 10, tgtY + 10);
 	}
+}
+
+void DrawingArea::drawRtable( link_tuple& links, int srcX, int srcY)
+{
 }
